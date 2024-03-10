@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+// Const and let
 
 export function taskFirst() {
     const task = 'I prefer const when I can.';
