@@ -1,11 +1,11 @@
 export default function taskBlock(trueOrFalse) {
-    const task = false;
-    const task2 = true;
-  
-    if (trueOrFalse) {
-      const task = true;
-      const task2 = false;
-    }
-  
-    return [task, task2];
+  const task = false; // variable modified to constant
+  const task2 = true; // variable modified to constant
+
+  if (trueOrFalse) {
+    const task = true; // variable modified to constant
+    const task2 = false; // variable modified to constant
   }
+
+  return [task, task2];
+}
