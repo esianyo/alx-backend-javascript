@@ -2,9 +2,9 @@
 
 const fs = require('fs');
 
-function countStudents(path) {
+function countStudents(filename) {
   try {
-    const data = fs.readFileSync(path, 'utf8');
+    const data = fs.readFileSync(filename, 'utf8');
     const lines = data.trim().split('\n');
     const students = {};
     lines.forEach((line) => {
