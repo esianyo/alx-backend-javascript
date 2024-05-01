@@ -4,12 +4,14 @@
     "description": "Your project description",
     "main": "index.js",
     "scripts": {
-      "test": "mocha"
+        "test": "mocha"
     },
     "author": "Your Name",
     "license": "MIT",
     "devDependencies": {
-      "mocha": "^x.x.x"
+        "mocha": "^x.x.x"
+    },
+    "dependencies": {
+        "chai": "^5.1.0"
     }
-  }
-  
+}
