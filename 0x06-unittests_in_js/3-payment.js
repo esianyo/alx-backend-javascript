@@ -1,10 +1,11 @@
 // 3-payment.js
 
-const Utils = require('./utils');
+const utils = require('./utils')
+
 
 function sendPaymentRequestToApi(totalAmount, totalShipping) {
-    const sum = Utils.calculateNumber(totalAmount, totalShipping);
-    console.log(`The total is: ${sum}`);
+total = utils.calculateNumber('SUM', totalAmount, totalShipping);
+console.log(`The total is: ${total}`)
 }
 
-module.exports = sendPaymentRequestToApi;
+module.exports = sendPaymentRequestToApi
