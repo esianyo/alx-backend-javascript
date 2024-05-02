@@ -1,20 +1,16 @@
 {
     "name": "0x06-unittests_in_js",
-    "version": "1.6.0",
-    "description": "Unit testing practices in JavaScript using Mocha, Chai, and Sinon libraries",
+    "version": "1.0.0",
+    "description": "Node.js testing",
     "main": "index.js",
     "scripts": {
-        "test": "mocha",
-        "test:watch": "mocha --watch"
+      "test": "mocha"
     },
-    "author": "Esianyo Dzisenu",
+    "author": "esianyo",
     "license": "MIT",
     "devDependencies": {
-        "@babel/core": "^7.24.5",
-        "@babel/preset-env": "^7.24.5",
-        "babel-loader": "^9.1.3",
-        "chai": "^5.1.0",
-        "mocha": "^9.2.2",
-        "sinon": "^16.0.0"
+      "chai": "^4.3.6",
+      "mocha": "^10.1.0",
+      "sinon": "^14.0.1"
     }
-}
+  }
