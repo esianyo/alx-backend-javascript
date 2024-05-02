@@ -1,35 +1,23 @@
-// 3-payment.test.js
-
-const { expect } = require('chai');
+const mocha = require('mocha');
+const { expect, assert } = require('chai');
 const sinon = require('sinon');
-const Utils = require('./utils');
+
+const utils = require('./utils');
 const sendPaymentRequestToApi = require('./3-payment');
+const { spy } = require('sinon');
 
-describe('sendPaymentRequestToApi', function() {
-    it('should call Utils.calculateNumber with the correct arguments', function() {
-        // Create a spy for Utils.calculateNumber
-        const calculateNumberSpy = sinon.spy(Utils, 'calculateNumber');
+describe('sendPaymentRequestToApi', () => {
+  it('should call calculateNumber', () => {
+    const calcNumSpy = sinon.spy(utils, 'calculateNumber');
+    const consoleSpy = sinon.spy(console, 'log');
 
-        // Call the function
-        sendPaymentRequestToApi(100, 20);
+    const apiRequestRes = sendPaymentRequestToApi(100, 20);
 
-        // Verify if Utils.calculateNumber was called with the correct arguments
-        expect(calculateNumberSpy.calledWith(100, 20)).to.be.true;
+    expect(calcNumSpy.calledOnceWithExactly('SUM', 100, 20)).to.equal(true);
+    expect(consoleSpy.calledWithExactly('The total is: 120')).to.equal(true);
+    expect(utils.calculateNumber('SUM', 100, 20)).to.equal(apiRequestRes);
 
-        // Restore the spy
-        calculateNumberSpy.restore();
-    });
+    calcNumSpy.restore();
+    consoleSpy.restore();
+  });
 });
-
-const { expect } = require("chai");
-const sinon = require('sinon')
-const Utils = require("./utils");
-const sendPaymentRequestToApi = require('./3-payment');
-
-describe("compare two add functions", function() {
-  it("checks equality", function() {
-    const spiedFunc = sinon.spy(Utils, 'calculateNumber');
-    sendPaymentRequestToApi(100, 20);
-    expect(spiedFunc.calledWith('SUM', 100, 20)).to.be.true;
-    spiedFunc.restore();
-  })});

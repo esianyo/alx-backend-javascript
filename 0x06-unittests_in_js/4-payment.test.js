@@ -1,14 +1,25 @@
-// 4-payment.test.js
+const mocha = require('mocha');
+const { expect, assert } = require('chai');
+const sinon = require('sinon');
 
-const { expect } = require("chai");
-const sinon = require('sinon')
-const Utils = require("./utils");
-const sendPaymentRequestToApi = require('./4-payment');
+const utils = require('./utils');
+const sendPaymentRequestToApi = require('./3-payment');
+const { spy } = require('sinon');
 
-describe("compare two add functions", function() {
-  it("checks equality", function() {
-    const stubbedFunc = sinon.stub(Utils, 'calculateNumber').returns(10);
-    const spiedStub = sinon.spy(stubbedFunc);
-    stubbedFunc(100, 20);
-    expect(spiedStub.calledWith(100, 20)).to.be.false;
-  })});
+describe('sendPaymentRequestToApi', () => {
+  it('should call calculateNumber', () => {
+    const stub = sinon.stub(utils, 'calculateNumber');
+    stub.returns(10);
+
+    const spy = sinon.spy(console, 'log');
+
+    const apiRequestRes = sendPaymentRequestToApi(100, 20);
+
+    expect(stub.calledOnceWithExactly('SUM', 100, 20)).to.equal(true);
+    expect(spy.calledOnceWithExactly('The total is: 10'));
+    expect(utils.calculateNumber('SUM', 100, 20)).to.equal(apiRequestRes);
+
+    stub.restore();
+    spy.restore();
+  });
+});
