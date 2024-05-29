@@ -1,22 +1,22 @@
-import { queryAPI, weakMap } from './100-weak.js';
+// Export a const instance of WeakMap and name it weakMap
+export const weakMap = new WeakMap();
 
-const endpoint = { protocol: 'http', name: 'getUsers' };
+// Export a new function named queryAPI
+export function queryAPI(endpoint) {
+  // Check if the endpoint is already tracked in the weakMap
+  if (weakMap.has(endpoint)) {
+    // Get the current number of queries for this endpoint
+    const queryCount = weakMap.get(endpoint);
 
-// Initial state, should be undefined since endpoint hasn't been queried yet
-console.log(weakMap.get(endpoint));
+    // If the number of queries is >= 5, throw an error
+    if (queryCount >= 5) {
+      throw new Error('Endpoint load is high');
+    }
 
-try {
-  // Call queryAPI multiple times
-  queryAPI(endpoint);
-  console.log(weakMap.get(endpoint)); // Should print 1
-
-  queryAPI(endpoint);
-  console.log(weakMap.get(endpoint)); // Should print 2
-
-  queryAPI(endpoint);
-  queryAPI(endpoint);
-  queryAPI(endpoint);
-  queryAPI(endpoint);
-} catch (error) {
-  console.error(error.message); // Should print "Endpoint load is high" after 5th query
+    // Increment the query count
+    weakMap.set(endpoint, queryCount + 1);
+  } else {
+    // If the endpoint is not yet tracked, start with a count of 1
+    weakMap.set(endpoint, 1);
+  }
 }
